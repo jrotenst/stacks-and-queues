@@ -1,4 +1,5 @@
 #include "PrefixStack.h"
+#include "StackFunctions.h"
 #include <iostream>
 #include <stack>
 #include <list>
@@ -15,19 +16,20 @@ using namespace std;
 
 void evaluatePrefixExpression();
 void testStackSpeeds();
-void timeArrayBasedStack();
-void timeListBasedStack();
+void testArrayBasedStack();
+void testListBasedStack();
 template <typename T>
-void pushAndPop(stack<int, T>);
+void pushAndPop(stack<int, T> stack);
 template <typename Func>
 long long TimeFunc(Func f);
+void testStackFunctions();
 
-const int OPERATIONS = 10000000;
-
+const int STACK_OPERATIONS = 10000000;
 
 int main() {
 	evaluatePrefixExpression();
-	testStackSpeeds();
+	//testStackSpeeds();
+	testStackFunctions();
 }
 
 void evaluatePrefixExpression() {
@@ -37,29 +39,29 @@ void evaluatePrefixExpression() {
 
 void testStackSpeeds() {
 	cout << endl << "Performing Stack Speed Test..." << endl;
-	long long arrayStackSpeed = TimeFunc(timeArrayBasedStack);
-	long long listStackSpeed = TimeFunc(timeListBasedStack);
-	cout << "Stack Speed Test Results on " << OPERATIONS << " Operations:" << endl;
+	long long arrayStackSpeed = TimeFunc(testArrayBasedStack);
+	long long listStackSpeed = TimeFunc(testListBasedStack);
+	cout << "Stack Speed Test Results on " << STACK_OPERATIONS << " Operations:" << endl;
 	cout << "Array Based Stack: " << arrayStackSpeed << " ms" << endl;
 	cout << "Linked List Based Stack: " << listStackSpeed << " ms" << endl;
 }
 
-void timeArrayBasedStack() {
+void testArrayBasedStack() {
 	stack<int, vector<int> > stack;
 	pushAndPop(stack);
 }
 
-void timeListBasedStack() {
+void testListBasedStack() {
 	stack<int, list<int> > stack;
 	pushAndPop(stack);
 }
 
 template <typename T>
 void pushAndPop(stack<int, T> stack) {
-	for (int i = 0; i < OPERATIONS; i++) {
+	for (int i = 0; i < STACK_OPERATIONS; i++) {
 		stack.push(i);
 	}
-	for (int i = 0; i < OPERATIONS; i++) {
+	for (int i = 0; i < STACK_OPERATIONS; i++) {
 		stack.pop();
 	}
 }
@@ -71,3 +73,19 @@ long long TimeFunc(Func f) {
 	auto end = steady_clock::now();
 	return duration_cast<milliseconds>(end - begin).count();
 }
+
+void testStackFunctions() {
+	StackFunctions<int> stackFunctions;
+	vector<int> integers;
+	for (int i = 0; i < 10; i++) {
+		integers.push_back(i);
+	}
+
+	cout << "Testing Stack Functions:" << endl;
+	stackFunctions.addElements(integers);
+	stackFunctions.printElements();
+	stackFunctions.changeElement(25, 5);
+	stackFunctions.printElements();
+}
+
+
