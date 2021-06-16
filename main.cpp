@@ -1,5 +1,6 @@
 #include "PrefixStack.h"
 #include "StackFunctions.h"
+#include "ReverseWords.h"
 #include <iostream>
 #include <stack>
 #include <list>
@@ -23,13 +24,17 @@ void pushAndPop(stack<int, T> stack);
 template <typename Func>
 long long TimeFunc(Func f);
 void testStackFunctions();
+void reverseWords();
 
 const int STACK_OPERATIONS = 10000000;
 
 int main() {
-	evaluatePrefixExpression();
+	//evaluatePrefixExpression();
 	//testStackSpeeds();
-	testStackFunctions();
+	//testStackFunctions();
+	//solveLISProblem();
+	reverseWords();
+
 }
 
 void evaluatePrefixExpression() {
@@ -86,6 +91,11 @@ void testStackFunctions() {
 	stackFunctions.printElements();
 	stackFunctions.changeElement(25, 5);
 	stackFunctions.printElements();
+}
+
+void reverseWords() {
+	ReverseWords reverseWords;
+	reverseWords.reverseWordsInFile();
 }
 
 

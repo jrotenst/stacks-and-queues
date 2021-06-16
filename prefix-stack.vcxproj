@@ -143,7 +143,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PrefixStack.h" />
+    <ClInclude Include="ReverseWords.h" />
     <ClInclude Include="StackFunctions.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ChuckNorrisJokes.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
